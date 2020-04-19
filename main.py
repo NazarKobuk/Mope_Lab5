@@ -4,16 +4,20 @@ from prettytable import PrettyTable
 import numpy as np
 
 x1min = -6
-x1max = 2234234
-x2min = 32424
-x2max = 223423
+x1max = 2
+x2min = 300000
+x2max = 2
 x3min = -6
-x3max = 8234234
+x3max = 8
 while True:
     xAvmax = (x1max + x2max + x3max) / 3
+    print("xAvmax", xAvmax)
     xAvmin = (x1min + x2min + x3min) / 3
+    print("xAvmin", xAvmin)
     ymax = int(200 + xAvmax)
+    print("ymax", ymax)
     ymin = int(200 + xAvmin)
+    print("ymin", ymin)
 
     x01 = (x1max+x1min)/2
     x02 = (x2max+x2min)/2
@@ -59,8 +63,12 @@ while True:
     X2kv = kv(X22)
     X3kv = kv(X33)
 
-    for i in range(1, m + 1):
-        globals()['Y%s' % i] = [random.randrange(ymin, ymax, 1) for k in range(15)]
+    if ymin < ymax:
+        for i in range(1, m + 1):
+            globals()['Y%s' % i] = [random.randrange(ymin, ymax, 1) for k in range(15)]
+    else:
+        for i in range(1, m + 1):
+            globals()['Y%s' % i] = [random.randrange(ymax, ymin, 1) for k in range(15)]
 
 
     y1av1, y2av2, y3av3, y4av4, y5av5, y6av6, y7av7, y8av8, y9av9, y10av10, y11av11, y12av12, y13av13, y14av14, y15av15 = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -209,15 +217,14 @@ while True:
 
         if Fp > Ft:
             print("Fp=", round(Fp, 2), ">Ft", Ft, "Рівняння неадекватно оригіналу, домножимо на число з діапазону [-1, 1]")
-            x1min = x1min * random.random() - 1
-            x1max = x1max * random.random() - 1
-            x2min = x2min * random.random() - 1
-            x2max = x2max * random.random() - 1
-            x3min = x3min * random.random() - 1
-            x3max = x3max * random.random() - 1
+            x1min = x1min * random.uniform(-1, 1)
+            x1max = x1max * random.uniform(-1, 1)
+            x2min = x2min * random.uniform(-1, 1)
+            x2max = x2max * random.uniform(-1, 1)
+            x3min = x3min * random.uniform(-1, 1)
+            x3max = x3max * random.uniform(-1, 1)
 
             input("Press Enter to continue...")
-            continue
         else:
             print("Fp=", round(Fp, 2), "<Ft", Ft, "Рівняння адекватно оригіналу")
             break
