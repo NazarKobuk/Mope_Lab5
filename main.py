@@ -3,6 +3,8 @@ from scipy.stats import f, t
 from prettytable import PrettyTable
 import numpy as np
 
+#Added multiplying in 221 row
+
 x1min = -6
 x1max = 2
 x2min = 300000
