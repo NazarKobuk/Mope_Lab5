@@ -215,6 +215,7 @@ while True:
             x2max = x2max * random.random() - 1
             x3min = x3min * random.random() - 1
             x3max = x3max * random.random() - 1
+
             input("Press Enter to continue...")
             continue
         else:
